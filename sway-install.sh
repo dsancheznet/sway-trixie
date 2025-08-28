@@ -235,43 +235,43 @@ if [ $STS = 0 ]; then
         #Check for selections (42 items)
         case $ITEM in
             ONLYOFFICE)
-                flatpak install --user org.onlyoffice.desktopeditors -y
+                flatpak install org.onlyoffice.desktopeditors -y
                 ;;
             FIREFOX)
-                flatpak install --user org.mozilla.firefox -y
+                flatpak install org.mozilla.firefox -y
                 ;;
             VLC)
-                flatpak install --user org.videolan.VLC -y
+                flatpak install org.videolan.VLC -y
                 ;;
             KODI)
-                flatpak install --user tv.kodi.Kodi -y
+                flatpak install tv.kodi.Kodi -y
                 ;;
             TORRENT)
-                flatpak install --user com.transmissionbt.Transmission -y
+                flatpak install com.transmissionbt.Transmission -y
                 ;;
             FREECAD)
-                flatpak install --user org.freecad.FreeCAD -y
+                flatpak install org.freecad.FreeCAD -y
                 ;;
             CURA)
-                flatpak install --user com.ultimaker.cura -y
+                flatpak install com.ultimaker.cura -y
                 ;;
             TELEGRAM)
-                flatpak install --user org.telegram.desktop -y
+                flatpak install org.telegram.desktop -y
                 ;;
             BLENDER)
-                flatpak install --user org.blender.Blender -y
+                flatpak install org.blender.Blender -y
                 ;;
             GIMP)
-                flatpak install --user org.gimp.GIMP -y
+                flatpak install org.gimp.GIMP -y
                 ;;
             INKSCAPE)
-                flatpak install --user org.inkscape.Inkscape -y
+                flatpak install org.inkscape.Inkscape -y
                 ;;
             JOPLIN)
-                flatpak install --user net.cozic.joplin_desktop -y
+                flatpak install net.cozic.joplin_desktop -y
                 ;;
             RUSTDESK)
-		flatpak install --user com.rustdesk.RustDesk -y
+		flatpak install com.rustdesk.RustDesk -y
   		;;
         esac
 	# Install flatseal anyway
@@ -284,12 +284,12 @@ else
 fi
 
 
-Show the reboot dialog
+#Show the reboot dialog
 if (whiptail --title "Reboot" --yesno "We're done, do you want to clean up and reboot? " 8 78); then
-    echo $PASSWORD | sudo -S apt autoremove
+    echo $PASSWORD | sudo -S apt autoremove --yes
     echo $PASSWORD | sudo -S reboot
 else
 #    clear
-    echo $PASSWORD | sudo -S apt autoremove
+    echo $PASSWORD | sudo -S apt autoremove --yes
     echo "You chose not to reboot. Cleaning is done. Finishing script... bye.. "
 fi
