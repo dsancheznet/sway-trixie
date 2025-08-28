@@ -128,7 +128,7 @@ gpg --export 0xfaf1020699503176 | sudo tee /usr/share/keyrings/ulauncher-archive
 echo "deb [signed-by=/usr/share/keyrings/ulauncher-archive-keyring.gpg] \
           http://ppa.launchpad.net/agornostal/ulauncher-dev/ubuntu jammy main" \
           | sudo tee /etc/apt/sources.list.d/ulauncher-dev-jammy.list
-echo $PASSWORD | sudo -S apt update && sudo apt install ulauncher
+echo $PASSWORD | sudo -S apt update && echo $PASSWORD | sudo -S apt install ulauncher --yes
 echo ------------------------------ 
 
 ### Let's install the logout menu
