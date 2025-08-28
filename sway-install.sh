@@ -52,7 +52,7 @@ echo "▐ ▌▌"
 echo "▐▖▙▌"
 echo "  ▄▌"
 cd ~
-echo $PASSWORD | sudo -S apt install build-essential libpam0g-dev libxcb-xkb-dev xauth xserver-xorg brightnessctl git
+echo $PASSWORD | sudo -S apt install build-essential libpam0g-dev libxcb-xkb-dev xauth xserver-xorg brightnessctl git --yes
 wget "https://ziglang.org/builds/zig-x86_64-linux-0.16.0-dev.43+99b2b6151.tar.xz"
 tar xvf zig-x86_64-linux-0.16.0-dev.43+99b2b6151.tar.xz
 git clone https://codeberg.org/fairyglade/ly.git
@@ -95,7 +95,7 @@ echo "  ▗ ▌   ▄▖▌          "
 echo "▛▌▜▘▙▘  ▐ ▛▌█▌▛▛▌█▌▛▘"
 echo "▙▌▐▖▛▖  ▐ ▌▌▙▖▌▌▌▙▖▄▌"
 echo "▄▌                   "
-echo $PASSWORD | sudo -S apt install gtk2-engines-aurora gtk2-engines-murrine gtk2-engines-pixbuf gtk2-engines nwg-look
+echo $PASSWORD | sudo -S apt install gtk2-engines-aurora gtk2-engines-murrine gtk2-engines-pixbuf gtk2-engines nwg-look --yes
 echo ------------------------------ 
 
 ### Let's install waybar
@@ -103,15 +103,14 @@ echo "       ▌     "
 echo "▌▌▌▀▌▌▌▛▌▀▌▛▘"
 echo "▚▚▘█▌▙▌▙▌█▌▌ "
 echo "     ▄▌      "
-echo $PASSWORD | sudo -S apt install waybar power-profiles-daemon
+echo $PASSWORD | sudo -S apt install waybar power-profiles-daemon --yes
 echo ------------------------------ 
 
 ### Let's configure the keyboard
-echo"▌     ▌        ▌"
-echo"▙▘█▌▌▌▛▌▛▌▀▌▛▘▛▌"
-echo"▛▖▙▖▙▌▙▌▙▌█▌▌ ▙▌"
-echo"    ▄▌          "
-
+echo "▌     ▌        ▌"
+echo "▙▘█▌▌▌▛▌▛▌▀▌▛▘▛▌"
+echo "▛▖▙▖▙▌▙▌▙▌█▌▌ ▙▌"
+echo "    ▄▌          "
 echo ------------------------------ 
 
 ### Let's configure the mouse
@@ -137,7 +136,7 @@ echo "   ▜         ▗ "
 echo "▌▌▌▐ ▛▌▛▌▛▌▌▌▜▘"
 echo "▚▚▘▐▖▙▌▙▌▙▌▙▌▐▖"
 echo "       ▄▌      "
-echo $PASSWORD | sudo -S apt install wlogout
+echo $PASSWORD | sudo -S apt install wlogout  --yes
 echo ------------------------------ 
 
 ### Let's install vim and some plugins
@@ -145,28 +144,32 @@ echo "  ▘           ▜     ▘    "
 echo "▌▌▌▛▛▌  ▟▖  ▛▌▐ ▌▌▛▌▌▛▌▛▘"
 echo "▚▘▌▌▌▌  ▝   ▙▌▐▖▙▌▙▌▌▌▌▄▌"
 echo "            ▌     ▄▌     "
-echo $PASSWORD | sudo -S apt install vim vim-tiny vim-runtime vim-common vim-autopairs vim-airline vim-airline-themes vim-addon-manager
+echo $PASSWORD | sudo -S apt install vim vim-tiny vim-runtime vim-common vim-autopairs vim-airline vim-airline-themes vim-addon-manager --yes
+echo ------------------------------ 
 
 ### Let's install and configure kitty 
 echo "▌ ▘▗ ▗   "
 echo "▙▘▌▜▘▜▘▌▌"
 echo "▛▖▌▐▖▐▖▙▌"
 echo "       ▄▌"
-echo $PASSWORD | sudo -S apt install kitty kitty-shell-integration kitty-terminfo
+echo $PASSWORD | sudo -S apt install kitty kitty-shell-integration kitty-terminfo --yes
+echo ------------------------------ 
 
 ### Let's install bpytop
 echo "▌     ▗     "
 echo "▛▌▛▌▌▌▜▘▛▌▛▌"
 echo "▙▌▙▌▙▌▐▖▙▌▙▌"
 echo "  ▌ ▄▌    ▌ "
-echo $PASSWORD | sudo -S apt install bpytop
+echo $PASSWORD | sudo -S apt install bpytop --yes
+echo ------------------------------ 
 
 
 ### Let's install kew
 echo "▌      "
 echo "▙▘█▌▌▌▌"
 echo "▛▖▙▖▚▚▘"
-echo $PASSWORD | sudo -S apt install kew
+echo $PASSWORD | sudo -S apt install kew --yes
+echo ------------------------------ 
 
 
 ### Let's install nemo 
@@ -174,22 +177,25 @@ echo "                   ▐▘  "
 echo "▛▌█▌▛▛▌▛▌  ▟▖  ▛▌▌▌▜▘▛▘"
 echo "▌▌▙▖▌▌▌▙▌  ▝   ▙▌▚▘▐ ▄▌"
 echo "               ▄▌      "
-echo $PASSWORD | sudo -S apt install nemo nemo-compare nemo-data nemo-fileroller nemo-gtkhash nemo-python
+echo $PASSWORD | sudo -S apt install nemo nemo-compare nemo-data nemo-fileroller nemo-gtkhash nemo-python --yes
+echo ------------------------------ 
 
 
 ### Let's install glow
-echo "   ▜     "
+echo "  ▜     "
 echo "▛▌▐ ▛▌▌▌▌"
 echo "▙▌▐▖▙▌▚▚▘"
 echo "▄▌       "
-echo $PASSWORD | sudo -S apt install glow
+echo $PASSWORD | sudo -S apt install glow --yes
+echo ------------------------------ 
 
 
 ### Let's install batcat
 echo "▌   ▗     ▗ "
 echo "▛▌▀▌▜▘▛▘▀▌▜▘"
 echo "▙▌█▌▐▖▙▖█▌▐▖"
-echo $PASSWORD | sudo -S apt install bat
+echo $PASSWORD | sudo -S apt install bat --yes
+echo ------------------------------ 
 
 
 ### Let's install flatpak
@@ -197,18 +203,18 @@ echo "▐▘▜   ▗     ▌       ▐▘▜   ▗ ▌   ▌ "
 echo "▜▘▐ ▀▌▜▘▛▌▀▌▙▘  ▟▖  ▜▘▐ ▀▌▜▘▛▌▌▌▛▌"
 echo "▐ ▐▖█▌▐▖▙▌█▌▛▖  ▝   ▐ ▐▖█▌▐▖▌▌▙▌▙▌"
 echo "        ▌                         "
-echo $PASSWORD | sudo -S apt install flatpak
+echo $PASSWORD | sudo -S apt install flatpak --yes
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+echo ------------------------------ 
 
 ### Show the software selection
-SELCT=$(whiptail --title "Instalar paquetes" --checklist --separate-output "Choose the packets you want to install:" 30 78 23 \
+SELCT=$(whiptail --title "Instalar paquetes flatpak" --checklist --separate-output "Choose the packets you want to install:" 30 78 23 \
 "ONLYOFFICE"        "OnlyOffice Packet"                             off \
 "FIREFOX"           "Mozilla Firefox Browser"                       off \
 "VLC"               "VLC Multimedia Player"                         off \
 "KODI"              "Kodi mediacenter"                              off \
 "YOUTDL"            "yt-dlp Video Downloader"                       off \
 "TORRENT"           "Transmission Bittorrent client"                off \
-"LIBRECAD"          "LibreCAD 2D Editor"                            off \
 "FREECAD"           "FreeCAD 3D Editor"                             off \
 "CURA"              "Cura Slicer"                                   off \
 "TELEGRAM"          "Telegram Desktop Messenger"                    off \
@@ -232,7 +238,6 @@ if [ $STS = 0 ]; then
                 ;;
             FIREFOX)
                 flatpak install --user org.mozilla.firefox -y
-                flatpak uninstall org.gnome.Epiphany -y
                 ;;
             VLC)
                 flatpak install --user org.videolan.VLC -y
@@ -243,14 +248,11 @@ if [ $STS = 0 ]; then
             TORRENT)
                 flatpak install --user com.transmissionbt.Transmission -y
                 ;;
-            LIBRECAD)
-                echo $PASSWORD | sudo -S apt install --yes librecad
-                ;;
             FREECAD)
                 flatpak install --user org.freecad.FreeCAD -y
                 ;;
             CURA)
-                flatpak install com.ultimaker.cura --user -y
+                flatpak install --user com.ultimaker.cura -y
                 ;;
             TELEGRAM)
                 flatpak install --user org.telegram.desktop -y
@@ -271,10 +273,11 @@ if [ $STS = 0 ]; then
 		flatpak install --user com.rustdesk.RustDesk -y
   		;;
         esac
-        flatpak install --user com.github.tchx84.Flatseal -y
+	# Install flatseal anyway
+	flatpak install --user com.github.tchx84.Flatseal -y
     done
 else
-    clear
+#    clear
     echo "Cancelled by the user"
     exit 0
 fi
@@ -285,7 +288,7 @@ if (whiptail --title "Reboot" --yesno "We're done, do you want to clean up and r
     echo $PASSWORD | sudo -S apt autoremove
     echo $PASSWORD | sudo -S reboot
 else
-    clear
+#    clear
     echo $PASSWORD | sudo -S apt autoremove
     echo "You chose not to reboot. Cleaning is done. Finishing script... bye.. "
 fi
