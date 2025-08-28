@@ -27,6 +27,7 @@ fi
 
 
 ### Let's first update the system
+echo $PASSWORD | sudo -S sed -i 's\non-free-firmware\non-free-firmware non-free contrib\' /etc/apt/sources.list
 echo $PASSWORD | sudo -S apt update
 echo $PASSWORD | sudo -S apt upgrade --yes
 
@@ -36,7 +37,7 @@ echo "▄▖    ▗   ▜ ▜ ▘      ▄▖    ▜   "
 echo "▐ ▛▌▛▘▜▘▀▌▐ ▐ ▌▛▌▛▌  ▐ ▛▌▛▌▐ ▛▘"
 echo "▟▖▌▌▄▌▐▖█▌▐▖▐▖▌▌▌▙▌  ▐ ▙▌▙▌▐▖▄▌"
 echo "                 ▄▌            "
-echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar git curl cryptsetup pv imagemagick imagemagick-doc ffmpeg ffmpeg-doc python3-pip python-is-python3 mycli httpie mc eza  --yes
+echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar git curl cryptsetup pv imagemagick ffmpeg python3-pip python-is-python3 mycli httpie mc eza  --yes
 
 
 ### Let's remove some unwanted menu entries...
