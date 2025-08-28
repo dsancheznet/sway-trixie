@@ -32,6 +32,10 @@ echo $PASSWORD | sudo -S apt upgrade --yes
 
 
 ### Let's install a few interesting (mostly needed) packets here...
+echo "▄▖    ▗   ▜ ▜ ▘      ▄▖    ▜   "
+echo "▐ ▛▌▛▘▜▘▀▌▐ ▐ ▌▛▌▛▌  ▐ ▛▌▛▌▐ ▛▘"
+echo "▟▖▌▌▄▌▐▖█▌▐▖▐▖▌▌▌▙▌  ▐ ▙▌▙▌▐▖▄▌"
+echo "                 ▄▌            "
 echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar git curl cryptsetup pv imagemagick imagemagick-doc ffmpeg ffmpeg-doc python3-pip python-is-python3 mycli httpie mc eza  --yes
 
 
@@ -39,7 +43,162 @@ echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar gi
 echo $PASSWORD | sudo -S rm '/usr/share/applications/display-im6.q16.desktop'
 echo $PASSWORD | sudo -S rm /usr/share/applications/mc.desktop
 echo $PASSWORD | sudo -S rm /usr/share/applications/mcedit.desktop
+echo ------------------------------ 
 
+
+### Let's install and configure ly display manager
+echo "▜   "
+echo "▐ ▌▌"
+echo "▐▖▙▌"
+echo "  ▄▌"
+cd ~
+echo $PASSWORD | sudo -S apt install build-essential libpam0g-dev libxcb-xkb-dev xauth xserver-xorg brightnessctl git
+wget "https://ziglang.org/builds/zig-x86_64-linux-0.16.0-dev.43+99b2b6151.tar.xz"
+tar xvf zig-x86_64-linux-0.16.0-dev.43+99b2b6151.tar.xz
+git clone https://codeberg.org/fairyglade/ly.git
+cd ly
+echo $PASSWORD | sudo -S ../zig-x86_64-linux-0.16.0-dev.43+99b2b6151/zig build
+echo $PASSWORD | sudo -S ../zig-x86_64-linux-0.16.0-dev.43+99b2b6151/zig build installexe -Dinit_system=systemd
+echo $PASSWORD | sudo -S systemctl enable ly.service
+cd ~
+sudo rm -rf ly/
+echo $PASSWORD | sudo -S rm -rf zig*
+echo ------------------------------ 
+
+### Let's install and configure sway display manager
+echo "▄▖       " 
+echo "▚ ▌▌▌▀▌▌▌"
+echo "▄▌▚▚▘█▌▙▌"
+echo "       ▄▌"
+echo $PASSWORD | sudo -S apt install sway*
+echo ------------------------------ 
+
+### Let's install the icons
+echo "▄▖        "
+echo "▐ ▛▘▛▌▛▌▛▘"
+echo "▟▖▙▖▙▌▌▌▄▌"
+cd ~
+git clone https://github.com/zayronxio/Zafiro-Nord-Dark.git
+mkdir -p .local/share/icons/
+mv Zafiro-Nord-Dark .local/share/icons/
+echo ------------------------------ 
+
+### Let's install the fonts
+echo "▖ ▖     ▌  ▄▖    ▗   "
+echo "▛▖▌█▌▛▘▛▌  ▙▖▛▌▛▌▜▘▛▘"
+echo "▌▝▌▙▖▌ ▙▌  ▌ ▙▌▌▌▐▖▄▌"
+curl https://raw.githubusercontent.com/dsancheznet/terminal-utilities/refs/heads/main/font_installer.sh | bash
+echo ------------------------------ 
+
+### Let's install gtk themes
+echo "  ▗ ▌   ▄▖▌          "
+echo "▛▌▜▘▙▘  ▐ ▛▌█▌▛▛▌█▌▛▘"
+echo "▙▌▐▖▛▖  ▐ ▌▌▙▖▌▌▌▙▖▄▌"
+echo "▄▌                   "
+echo $PASSWORD | sudo -S apt install gtk2-engines-aurora gtk2-engines-murrine gtk2-engines-pixbuf gtk2-engines nwg-look
+echo ------------------------------ 
+
+### Let's install waybar
+echo "       ▌     "
+echo "▌▌▌▀▌▌▌▛▌▀▌▛▘"
+echo "▚▚▘█▌▙▌▙▌█▌▌ "
+echo "     ▄▌      "
+echo $PASSWORD | sudo -S apt install waybar power-profiles-daemon
+echo ------------------------------ 
+
+### Let's configure the keyboard
+echo"▌     ▌        ▌"
+echo"▙▘█▌▌▌▛▌▛▌▀▌▛▘▛▌"
+echo"▛▖▙▖▙▌▙▌▙▌█▌▌ ▙▌"
+echo"    ▄▌          "
+
+echo ------------------------------ 
+
+### Let's configure the mouse
+echo "▛▛▌▛▌▌▌▛▘█▌"
+echo "▌▌▌▙▌▙▌▄▌▙▖"
+echo ------------------------------ 
+
+### Let's configure ulauncher
+echo "  ▜         ▌     "
+echo "▌▌▐ ▀▌▌▌▛▌▛▘▛▌█▌▛▘"
+echo "▙▌▐▖█▌▙▌▌▌▙▖▌▌▙▖▌ "
+echo $PASSWORD | sudo -S apt update && sudo apt install -y gnupg
+gpg --keyserver keyserver.ubuntu.com --recv 0xfaf1020699503176
+gpg --export 0xfaf1020699503176 | sudo tee /usr/share/keyrings/ulauncher-archive-keyring.gpg > /dev/null
+echo "deb [signed-by=/usr/share/keyrings/ulauncher-archive-keyring.gpg] \
+          http://ppa.launchpad.net/agornostal/ulauncher-dev/ubuntu jammy main" \
+          | sudo tee /etc/apt/sources.list.d/ulauncher-dev-jammy.list
+echo $PASSWORD | sudo -S apt update && sudo apt install ulauncher
+echo ------------------------------ 
+
+### Let's install the logout menu
+echo "   ▜         ▗ "
+echo "▌▌▌▐ ▛▌▛▌▛▌▌▌▜▘"
+echo "▚▚▘▐▖▙▌▙▌▙▌▙▌▐▖"
+echo "       ▄▌      "
+echo $PASSWORD | sudo -S apt install wlogout
+echo ------------------------------ 
+
+### Let's install vim and some plugins
+echo "  ▘           ▜     ▘    "
+echo "▌▌▌▛▛▌  ▟▖  ▛▌▐ ▌▌▛▌▌▛▌▛▘"
+echo "▚▘▌▌▌▌  ▝   ▙▌▐▖▙▌▙▌▌▌▌▄▌"
+echo "            ▌     ▄▌     "
+echo $PASSWORD | sudo -S apt install vim vim-tiny vim-runtime vim-common vim-autopairs vim-airline vim-airline-themes vim-addon-manager
+
+### Let's install and configure kitty 
+echo "▌ ▘▗ ▗   "
+echo "▙▘▌▜▘▜▘▌▌"
+echo "▛▖▌▐▖▐▖▙▌"
+echo "       ▄▌"
+echo $PASSWORD | sudo -S apt install kitty kitty-shell-integration kitty-terminfo
+
+### Let's install bpytop
+echo "▌     ▗     "
+echo "▛▌▛▌▌▌▜▘▛▌▛▌"
+echo "▙▌▙▌▙▌▐▖▙▌▙▌"
+echo "  ▌ ▄▌    ▌ "
+echo $PASSWORD | sudo -S apt install bpytop
+
+
+### Let's install kew
+echo "▌      "
+echo "▙▘█▌▌▌▌"
+echo "▛▖▙▖▚▚▘"
+echo $PASSWORD | sudo -S apt install kew
+
+
+### Let's install nemo 
+echo "                   ▐▘  "
+echo "▛▌█▌▛▛▌▛▌  ▟▖  ▛▌▌▌▜▘▛▘"
+echo "▌▌▙▖▌▌▌▙▌  ▝   ▙▌▚▘▐ ▄▌"
+echo "               ▄▌      "
+echo $PASSWORD | sudo -S apt install nemo nemo-compare nemo-data nemo-fileroller nemo-gtkhash nemo-python
+
+
+### Let's install glow
+echo "   ▜     "
+echo "▛▌▐ ▛▌▌▌▌"
+echo "▙▌▐▖▙▌▚▚▘"
+echo "▄▌       "
+echo $PASSWORD | sudo -S apt install glow
+
+
+### Let's install batcat
+echo "▌   ▗     ▗ "
+echo "▛▌▀▌▜▘▛▘▀▌▜▘"
+echo "▙▌█▌▐▖▙▖█▌▐▖"
+echo $PASSWORD | sudo -S apt install bat
+
+
+### Let's install flatpak
+echo "▐▘▜   ▗     ▌       ▐▘▜   ▗ ▌   ▌ "
+echo "▜▘▐ ▀▌▜▘▛▌▀▌▙▘  ▟▖  ▜▘▐ ▀▌▜▘▛▌▌▌▛▌"
+echo "▐ ▐▖█▌▐▖▙▌█▌▛▖  ▝   ▐ ▐▖█▌▐▖▌▌▙▌▙▌"
+echo "        ▌                         "
+echo $PASSWORD | sudo -S apt install flatpak
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 ### Show the software selection
 SELCT=$(whiptail --title "Instalar paquetes" --checklist --separate-output "Choose the packets you want to install:" 30 78 23 \
