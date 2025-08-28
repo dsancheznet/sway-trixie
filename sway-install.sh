@@ -71,7 +71,7 @@ echo "▄▖       "
 echo "▚ ▌▌▌▀▌▌▌"
 echo "▄▌▚▚▘█▌▙▌"
 echo "       ▄▌"
-echo $PASSWORD | sudo -S apt install sway*
+echo $PASSWORD | sudo -S apt install sway* dg-desktop-portal-wlr --yes
 echo ------------------------------ 
 
 ### Let's install the icons
