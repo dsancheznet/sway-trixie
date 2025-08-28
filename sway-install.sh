@@ -274,9 +274,9 @@ if [ $STS = 0 ]; then
 		flatpak install com.rustdesk.RustDesk -y
   		;;
         esac
-	# Install flatseal anyway
-	flatpak install --user com.github.tchx84.Flatseal -y
     done
+	# Install flatseal anyway
+	flatpak install com.github.tchx84.Flatseal -y
 else
 #    clear
     echo "Cancelled by the user"
