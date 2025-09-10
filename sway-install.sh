@@ -71,7 +71,7 @@ echo "▄▖       "
 echo "▚ ▌▌▌▀▌▌▌"
 echo "▄▌▚▚▘█▌▙▌"
 echo "       ▄▌"
-echo $PASSWORD | sudo -S apt install sway* xdg-desktop-portal-wlr --yes
+echo $PASSWORD | sudo -S apt install sway sway-backgrounds swaybg swayidle swayimg swaykbdd swaylock sway-notification-center swayosd swaysome xdg-desktop-portal-wlr --yes
 echo ------------------------------ 
 
 ### Let's install the icons
