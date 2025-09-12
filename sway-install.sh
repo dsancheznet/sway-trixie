@@ -37,7 +37,19 @@ echo "▄▖    ▗   ▜ ▜ ▘      ▄▖    ▜   "
 echo "▐ ▛▌▛▘▜▘▀▌▐ ▐ ▌▛▌▛▌  ▐ ▛▌▛▌▐ ▛▘"
 echo "▟▖▌▌▄▌▐▖█▌▐▖▐▖▌▌▌▙▌  ▐ ▙▌▙▌▐▖▄▌"
 echo "                 ▄▌            "
-echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar git curl cryptsetup pv imagemagick ffmpeg python3-pip python-is-python3 mycli httpie mc eza  --yes
+echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar git curl php-cli php-sqlite3 sqlite3-tools sqlite3 php-curl cryptsetup pv imagemagick ffmpeg python3-pip python-is-python3 mycli httpie mc eza rust-all pkg-config libssl-dev libc++1 grim jq wl-clipboard --yes
+
+
+### Let's install starhip ( bash prompt ) htps://starship.rs
+echo "  ▗       ▌ ▘  "
+echo "▛▘▜▘▀▌▛▘▛▘▛▌▌▛▌"
+echo "▄▌▐▖█▌▌ ▄▌▌▌▌▙▌"
+echo "             ▌ "
+curl -sS https://starship.rs/install.sh | sh
+cat <<EOF> ~/.bashrc
+## Activate starship
+eval "$(starship init bash)"
+EOF
 
 
 ### Let's remove some unwanted menu entries...
@@ -66,13 +78,17 @@ sudo rm -rf ly/
 echo $PASSWORD | sudo -S rm -rf zig*
 echo ------------------------------ 
 
+
 ### Let's install and configure sway display manager
 echo "▄▖       " 
 echo "▚ ▌▌▌▀▌▌▌"
 echo "▄▌▚▚▘█▌▙▌"
 echo "       ▄▌"
-echo $PASSWORD | sudo -S apt install sway sway-backgrounds swaybg swayidle swayimg swaykbdd swaylock sway-notification-center swayosd swaysome xdg-desktop-portal-wlr pulseaudio-utils --yes
+echo $PASSWORD | sudo -S apt install sway sway-backgrounds swaybg swayidle swayimg swaykbdd swaylock sway-notification-center swayosd swaysome xdg-desktop-portal-wlr pulseaudio-utils xwayland --yes
+mkdir -p ~/.config/waybar
+cp /etc/xdg/waybar/* ~/.config/waybar/
 echo ------------------------------ 
+
 
 ### Let's install the icons
 echo "▄▖        "
@@ -84,12 +100,14 @@ mkdir -p .local/share/icons/
 mv Zafiro-Nord-Dark .local/share/icons/
 echo ------------------------------ 
 
+
 ### Let's install the fonts
 echo "▖ ▖     ▌  ▄▖    ▗   "
 echo "▛▖▌█▌▛▘▛▌  ▙▖▛▌▛▌▜▘▛▘"
 echo "▌▝▌▙▖▌ ▙▌  ▌ ▙▌▌▌▐▖▄▌"
 curl https://raw.githubusercontent.com/dsancheznet/terminal-utilities/refs/heads/main/font_installer.sh | bash
 echo ------------------------------ 
+
 
 ### Let's install gtk themes
 echo "  ▗ ▌   ▄▖▌          "
@@ -99,6 +117,7 @@ echo "▄▌                   "
 echo $PASSWORD | sudo -S apt install gtk2-engines-aurora gtk2-engines-murrine gtk2-engines-pixbuf gtk2-engines nwg-look --yes
 echo ------------------------------ 
 
+
 ### Let's install waybar
 echo "       ▌     "
 echo "▌▌▌▀▌▌▌▛▌▀▌▛▘"
@@ -107,6 +126,7 @@ echo "     ▄▌      "
 echo $PASSWORD | sudo -S apt install waybar power-profiles-daemon --yes
 echo ------------------------------ 
 
+
 ### Let's configure the keyboard
 echo "▌     ▌        ▌"
 echo "▙▘█▌▌▌▛▌▛▌▀▌▛▘▛▌"
@@ -114,10 +134,12 @@ echo "▛▖▙▖▙▌▙▌▙▌█▌▌ ▙▌"
 echo "    ▄▌          "
 echo ------------------------------ 
 
+
 ### Let's configure the mouse
 echo "▛▛▌▛▌▌▌▛▘█▌"
 echo "▌▌▌▙▌▙▌▄▌▙▖"
 echo ------------------------------ 
+
 
 ### Let's configure ulauncher
 echo "  ▜         ▌     "
@@ -132,6 +154,7 @@ echo "deb [signed-by=/usr/share/keyrings/ulauncher-archive-keyring.gpg] \
 echo $PASSWORD | sudo -S apt update && echo $PASSWORD | sudo -S apt install ulauncher --yes
 echo ------------------------------ 
 
+
 ### Let's install the logout menu
 echo "   ▜         ▗ "
 echo "▌▌▌▐ ▛▌▛▌▛▌▌▌▜▘"
@@ -139,6 +162,7 @@ echo "▚▚▘▐▖▙▌▙▌▙▌▙▌▐▖"
 echo "       ▄▌      "
 echo $PASSWORD | sudo -S apt install wlogout  --yes
 echo ------------------------------ 
+
 
 ### Let's install vim and some plugins
 echo "  ▘           ▜     ▘    "
@@ -148,6 +172,7 @@ echo "            ▌     ▄▌     "
 echo $PASSWORD | sudo -S apt install vim vim-tiny vim-runtime vim-common vim-autopairs vim-airline vim-airline-themes vim-addon-manager --yes
 echo ------------------------------ 
 
+
 ### Let's install and configure kitty 
 echo "▌ ▘▗ ▗   "
 echo "▙▘▌▜▘▜▘▌▌"
@@ -155,6 +180,7 @@ echo "▛▖▌▐▖▐▖▙▌"
 echo "       ▄▌"
 echo $PASSWORD | sudo -S apt install kitty kitty-shell-integration kitty-terminfo --yes
 echo ------------------------------ 
+
 
 ### Let's install bpytop
 echo "▌     ▗     "
@@ -208,6 +234,7 @@ echo $PASSWORD | sudo -S apt install flatpak --yes
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo ------------------------------ 
 
+
 ### Show the software selection
 SELCT=$(whiptail --title "Instalar paquetes flatpak" --checklist --separate-output "Choose the packets you want to install:" 30 78 23 \
 "ONLYOFFICE"        "OnlyOffice Packet"                             off \
@@ -221,7 +248,7 @@ SELCT=$(whiptail --title "Instalar paquetes flatpak" --checklist --separate-outp
 "TELEGRAM"          "Telegram Desktop Messenger"                    off \
 "BLENDER"           "Blender 3D Editor"                             off \
 "GIMP"              "Gimp Imge Manipulation Program"                off \
-"INKSCAPE"	    "Inkscape Vector Drawing Program"		    off \
+"INKSCAPE"	        "Inkscape Vector Drawing Program"		            off \
 "JOPLIN"            "Joplin Markdown Notes"                         off \
 "RUSTDESK"          "Rustdesk remote utility"                       off \
 3>&1 1>&2 2>&3 )
@@ -271,8 +298,8 @@ if [ $STS = 0 ]; then
                 flatpak install net.cozic.joplin_desktop -y
                 ;;
             RUSTDESK)
-		flatpak install com.rustdesk.RustDesk -y
-  		;;
+		            flatpak install com.rustdesk.RustDesk -y
+  		          ;;
         esac
     done
 	# Install flatseal anyway
@@ -284,12 +311,26 @@ else
 fi
 
 
-#Show the reboot dialog
+# Configuring Desktop Stuff
+cd ~
+mkdir Documents Downloads Developer Images
+
+
+# Show the reboot dialog
 if (whiptail --title "Reboot" --yesno "We're done, do you want to clean up and reboot? " 8 78); then
     echo $PASSWORD | sudo -S apt autoremove --yes
     echo $PASSWORD | sudo -S reboot
 else
-#    clear
+# clear
     echo $PASSWORD | sudo -S apt autoremove --yes
     echo "You chose not to reboot. Cleaning is done. Finishing script... bye.. "
 fi
+
+
+
+### Notes for future enhancements
+# Change ly for greetd + tuigreet
+# https://wiki.archlinux.org/title/Greetd
+# https://github.com/apognu/tuigreet
+#
+
