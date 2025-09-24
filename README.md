@@ -13,7 +13,7 @@ This script takes care of installing the Sway WM on a Debian Trixie minimal inst
 You may execute this script remotely by running:
 
 ```
-curl https://raw.githubusercontent.com/dsancheznet/sway-trixie/refs/heads/main/sway-install.sh | bash
+wget -qO- https://raw.githubusercontent.com/dsancheznet/sway-trixie/refs/heads/main/sway-install.sh | bash
 ```
 
 Enjoy
