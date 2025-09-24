@@ -50,7 +50,8 @@ cat <<EOF> ~/.bashrc
 ## Activate starship
 eval "$(starship init bash)"
 EOF
-
+# Load a cool preset find more at https://starship.rs/presets/
+starship preset gruvbox-rainbow -o ~/.config/starship.toml
 
 ### Let's remove some unwanted menu entries...
 echo $PASSWORD | sudo -S rm '/usr/share/applications/display-im6.q16.desktop'
@@ -170,6 +171,8 @@ echo "▌▌▌▛▛▌  ▟▖  ▛▌▐ ▌▌▛▌▌▛▌▛▘"
 echo "▚▘▌▌▌▌  ▝   ▙▌▐▖▙▌▙▌▌▌▌▄▌"
 echo "            ▌     ▄▌     "
 echo $PASSWORD | sudo -S apt install vim vim-tiny vim-runtime vim-common vim-autopairs vim-airline vim-airline-themes vim-addon-manager --yes
+# Download updated version of vimrc configuration file.
+wget -O ~/.vimrc "https://raw.githubusercontent.com/dsancheznet/terminal-utilities/refs/heads/main/.vimrc"
 echo ------------------------------ 
 
 
