@@ -134,6 +134,8 @@ echo "▙▘█▌▌▌▛▌▛▌▀▌▛▘▛▌"
 echo "▛▖▙▖▙▌▙▌▙▌█▌▌ ▙▌"
 echo "    ▄▌          "
 echo ------------------------------ 
+# read https://github.com/swaywm/sway/wiki#keyboard-layout
+echo ------------------------------ 
 
 
 ### Let's configure the mouse
@@ -182,6 +184,8 @@ echo "▙▘▌▜▘▜▘▌▌"
 echo "▛▖▌▐▖▐▖▙▌"
 echo "       ▄▌"
 echo $PASSWORD | sudo -S apt install kitty kitty-shell-integration kitty-terminfo --yes
+mkdir -p ~/.config/kitty
+wget -O ~/.config/kitty/kitty.conf
 echo ------------------------------ 
 
 
