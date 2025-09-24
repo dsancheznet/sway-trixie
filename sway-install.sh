@@ -164,6 +164,111 @@ echo "▌▌▌▐ ▛▌▛▌▛▌▌▌▜▘"
 echo "▚▚▘▐▖▙▌▙▌▙▌▙▌▐▖"
 echo "       ▄▌      "
 echo $PASSWORD | sudo -S apt install wlogout  --yes
+mkdir -p ~/.config/wlogout
+cat << EOF > ~/.config/wlogout/style.css
+* {
+	background-image: none;
+	box-shadow: none;
+}
+
+window {
+	background-color: rgba(12, 12, 12, 0.5);
+}
+
+button {
+  border-radius: 0px;
+  border-color: black;
+	text-decoration-color: #FFFFFF;
+  color: #FFFFFF;
+	background-color: #1E1E1E;
+	border-style: solid;
+	border-width: 1px;
+  border-color: #ffffff;
+	background-repeat: no-repeat;
+  border-left: none;
+  border-right: none;
+	background-position: center;
+	background-size: 50%;
+}
+
+button:focus, button:active, button:hover {
+	background-color: #D65D0E;
+	outline-style: none;
+}
+
+#lock {
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+    border-left: 1px solid #ffffff;
+}
+
+#logout {
+    background-image: image(url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+}
+
+#hibernate {
+    background-image: image(url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
+}
+
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+}
+
+#shutdown {
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    border-right: 1px solid #ffffff;
+}
+EOF
+cat << EOF > ~/.config/wlogout/layout
+{
+    "label" : "lock",
+    "action" : "/$HOMEDIR/.config/wlogout/lock.sh",
+    "text" : "Lock",
+    "keybind" : "l"
+}
+{
+    "label" : "hibernate",
+    "action" : "systemctl hibernate",
+    "text" : "Hibernate",
+    "keybind" : "h"
+}
+{
+    "label" : "suspend",
+    "action" : "systemctl suspend",
+    "text" : "Suspend",
+    "keybind" : "u"
+}
+{
+    "label" : "logout",
+    "action" : "loginctl terminate-user $USER",
+    "text" : "Logout",
+    "keybind" : "e"
+}
+{
+    "label" : "reboot",
+    "action" : "systemctl reboot",
+    "text" : "Reboot",
+    "keybind" : "r"
+}
+{
+    "label" : "shutdown",
+    "action" : "systemctl poweroff",
+    "text" : "Shutdown",
+    "keybind" : "s"
+}
+EOF
+cat << EOF > ~/.config/wlogout/lock.sh
+#!/bin/env bash
+grim /tmp/ss.png && convert -blur 0x20 /tmp/ss.png /tmp/ss.png && swaylock -i /tmp/ss.png
+EOF
+chmod +x ~/.config/wlogout/lock.sh:
 echo ------------------------------ 
 
 
