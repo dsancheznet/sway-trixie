@@ -1,5 +1,22 @@
 #!/bin/env bash
 
+### Capture command line arguments
+while getopts d option
+do
+    case "${option}"
+        in
+        d)DEBUGOPT="ON";; # This option allows to stop after each step.
+    esac
+done
+
+if [[ $DEBUGOPT = "ON" ]]; then
+    echo "Debugging is set $DEBUGOPT";
+else
+    echo "DEbugging is not set. ";
+fi
+
+
+
 ### Set version
 VERSION="v1.0"
 
@@ -37,14 +54,19 @@ echo "▄▖    ▗   ▜ ▜ ▘      ▄▖    ▜   "
 echo "▐ ▛▌▛▘▜▘▀▌▐ ▐ ▌▛▌▛▌  ▐ ▛▌▛▌▐ ▛▘"
 echo "▟▖▌▌▄▌▐▖█▌▐▖▐▖▌▌▌▙▌  ▐ ▙▌▙▌▐▖▄▌"
 echo "                 ▄▌            "
+echo "Installing tools..."
 echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar git curl php-cli php-sqlite3 sqlite3-tools sqlite3 php-curl cryptsetup pv imagemagick ffmpeg python3-pip python-is-python3 mycli httpie mc eza rust-all pkg-config libssl-dev libc++1 grim jq wl-clipboard --yes
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install starhip ( bash prompt ) htps://starship.rs
 echo "  ▗       ▌ ▘  "
 echo "▛▘▜▘▀▌▛▘▛▘▛▌▌▛▌"
 echo "▄▌▐▖█▌▌ ▄▌▌▌▌▙▌"
 echo "             ▌ "
+echo "Installing Starship..."
 curl -sS https://starship.rs/install.sh | sh
 cat <<EOF> ~/.bashrc
 ## Activate starship
@@ -53,7 +75,12 @@ EOF
 # Load a cool preset find more at https://starship.rs/presets/
 starship preset gruvbox-rainbow -o ~/.config/starship.toml
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
+
 ### Let's remove some unwanted menu entries...
+echo "Removing menu entries..."
 echo $PASSWORD | sudo -S rm '/usr/share/applications/display-im6.q16.desktop'
 echo $PASSWORD | sudo -S rm /usr/share/applications/mc.desktop
 echo $PASSWORD | sudo -S rm /usr/share/applications/mcedit.desktop
@@ -65,6 +92,7 @@ echo "▜   "
 echo "▐ ▌▌"
 echo "▐▖▙▌"
 echo "  ▄▌"
+echo "Installing ly..."
 cd ~
 echo $PASSWORD | sudo -S apt install build-essential libpam0g-dev libxcb-xkb-dev xauth xserver-xorg brightnessctl git --yes
 wget "https://ziglang.org/builds/zig-x86_64-linux-0.16.0-dev.43+99b2b6151.tar.xz"
@@ -79,75 +107,106 @@ sudo rm -rf ly/
 echo $PASSWORD | sudo -S rm -rf zig*
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install and configure sway display manager
 echo "▄▖       " 
 echo "▚ ▌▌▌▀▌▌▌"
 echo "▄▌▚▚▘█▌▙▌"
 echo "       ▄▌"
+echo "Installing Sway..."
 echo $PASSWORD | sudo -S apt install sway sway-backgrounds swaybg swayidle swayimg swaykbdd swaylock sway-notification-center swayosd swaysome xdg-desktop-portal-wlr pulseaudio-utils xwayland --yes
 mkdir -p ~/.config/waybar
 cp /etc/xdg/waybar/* ~/.config/waybar/
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install the icons
 echo "▄▖        "
 echo "▐ ▛▘▛▌▛▌▛▘"
 echo "▟▖▙▖▙▌▌▌▄▌"
+echo "Installing Icons..."
 cd ~
 git clone https://github.com/zayronxio/Zafiro-Nord-Dark.git
 mkdir -p .local/share/icons/
 mv Zafiro-Nord-Dark .local/share/icons/
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install the fonts
 echo "▖ ▖     ▌  ▄▖    ▗   "
 echo "▛▖▌█▌▛▘▛▌  ▙▖▛▌▛▌▜▘▛▘"
 echo "▌▝▌▙▖▌ ▙▌  ▌ ▙▌▌▌▐▖▄▌"
+echo "Installing Nerd Fonts..."
 curl https://raw.githubusercontent.com/dsancheznet/terminal-utilities/refs/heads/main/font_installer.sh | bash
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install gtk themes
 echo "  ▗ ▌   ▄▖▌          "
 echo "▛▌▜▘▙▘  ▐ ▛▌█▌▛▛▌█▌▛▘"
 echo "▙▌▐▖▛▖  ▐ ▌▌▙▖▌▌▌▙▖▄▌"
 echo "▄▌                   "
+echo "Installing gtk Themes..."
 echo $PASSWORD | sudo -S apt install gtk2-engines-aurora gtk2-engines-murrine gtk2-engines-pixbuf gtk2-engines nwg-look --yes
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install waybar
 echo "       ▌     "
 echo "▌▌▌▀▌▌▌▛▌▀▌▛▘"
 echo "▚▚▘█▌▙▌▙▌█▌▌ "
 echo "     ▄▌      "
+echo "Installing Waybar..."
 echo $PASSWORD | sudo -S apt install waybar power-profiles-daemon --yes
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's configure the keyboard
 echo "▌     ▌        ▌"
 echo "▙▘█▌▌▌▛▌▛▌▀▌▛▘▛▌"
 echo "▛▖▙▖▙▌▙▌▙▌█▌▌ ▙▌"
 echo "    ▄▌          "
-echo ------------------------------ 
+echo "Configuring Keyboard..."
 # read https://github.com/swaywm/sway/wiki#keyboard-layout
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's configure the mouse
 echo "▛▛▌▛▌▌▌▛▘█▌"
 echo "▌▌▌▙▌▙▌▄▌▙▖"
+echo "Configuring mouse..."
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's configure ulauncher
 echo "  ▜         ▌     "
 echo "▌▌▐ ▀▌▌▌▛▌▛▘▛▌█▌▛▘"
 echo "▙▌▐▖█▌▙▌▌▌▙▖▌▌▙▖▌ "
+echo "Installing ulauncher..."
 echo $PASSWORD | sudo -S apt update && sudo apt install -y gnupg
 gpg --keyserver keyserver.ubuntu.com --recv 0xfaf1020699503176
 gpg --export 0xfaf1020699503176 | sudo tee /usr/share/keyrings/ulauncher-archive-keyring.gpg > /dev/null
@@ -157,12 +216,16 @@ echo "deb [signed-by=/usr/share/keyrings/ulauncher-archive-keyring.gpg] \
 echo $PASSWORD | sudo -S apt update && echo $PASSWORD | sudo -S apt install ulauncher --yes
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install the logout menu
 echo "   ▜         ▗ "
 echo "▌▌▌▐ ▛▌▛▌▛▌▌▌▜▘"
 echo "▚▚▘▐▖▙▌▙▌▙▌▙▌▐▖"
 echo "       ▄▌      "
+echo "Installing logout..."
 echo $PASSWORD | sudo -S apt install wlogout  --yes
 mkdir -p ~/.config/wlogout
 cat << EOF > ~/.config/wlogout/style.css
@@ -271,81 +334,116 @@ EOF
 chmod +x ~/.config/wlogout/lock.sh:
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install vim and some plugins
 echo "  ▘           ▜     ▘    "
 echo "▌▌▌▛▛▌  ▟▖  ▛▌▐ ▌▌▛▌▌▛▌▛▘"
 echo "▚▘▌▌▌▌  ▝   ▙▌▐▖▙▌▙▌▌▌▌▄▌"
 echo "            ▌     ▄▌     "
+echo "Installing vim+plugins..."
 echo $PASSWORD | sudo -S apt install vim vim-tiny vim-runtime vim-common vim-autopairs vim-airline vim-airline-themes vim-addon-manager --yes
 # Download updated version of vimrc configuration file.
 wget -O ~/.vimrc "https://raw.githubusercontent.com/dsancheznet/terminal-utilities/refs/heads/main/.vimrc"
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install and configure kitty 
 echo "▌ ▘▗ ▗   "
 echo "▙▘▌▜▘▜▘▌▌"
 echo "▛▖▌▐▖▐▖▙▌"
 echo "       ▄▌"
+echo "Installing kitty..."
 echo $PASSWORD | sudo -S apt install kitty kitty-shell-integration kitty-terminfo --yes
 mkdir -p ~/.config/kitty
 wget -O ~/.config/kitty/kitty.conf
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install bpytop
 echo "▌     ▗     "
 echo "▛▌▛▌▌▌▜▘▛▌▛▌"
 echo "▙▌▙▌▙▌▐▖▙▌▙▌"
 echo "  ▌ ▄▌    ▌ "
+echo "Installing bpytop..."
 echo $PASSWORD | sudo -S apt install bpytop --yes
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install kew
 echo "▌      "
 echo "▙▘█▌▌▌▌"
 echo "▛▖▙▖▚▚▘"
+echo "Installing kew..."
 echo $PASSWORD | sudo -S apt install kew --yes
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install nemo 
 echo "                   ▐▘  "
 echo "▛▌█▌▛▛▌▛▌  ▟▖  ▛▌▌▌▜▘▛▘"
 echo "▌▌▙▖▌▌▌▙▌  ▝   ▙▌▚▘▐ ▄▌"
 echo "               ▄▌      "
+echo "Installign nemo and gvfs..."
 echo $PASSWORD | sudo -S apt install nemo nemo-compare nemo-data nemo-fileroller nemo-gtkhash nemo-python --yes
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install glow
 echo "  ▜     "
 echo "▛▌▐ ▛▌▌▌▌"
 echo "▙▌▐▖▙▌▚▚▘"
 echo "▄▌       "
+echo "Installing glow..."
 echo $PASSWORD | sudo -S apt install glow --yes
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install batcat
 echo "▌   ▗     ▗ "
 echo "▛▌▀▌▜▘▛▘▀▌▜▘"
 echo "▙▌█▌▐▖▙▖█▌▐▖"
+echo "Installing batcat..."
 echo $PASSWORD | sudo -S apt install bat --yes
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Let's install flatpak
 echo "▐▘▜   ▗     ▌       ▐▘▜   ▗ ▌   ▌ "
 echo "▜▘▐ ▀▌▜▘▛▌▀▌▙▘  ▟▖  ▜▘▐ ▀▌▜▘▛▌▌▌▛▌"
 echo "▐ ▐▖█▌▐▖▙▌█▌▛▖  ▝   ▐ ▐▖█▌▐▖▌▌▙▌▙▌"
 echo "        ▌                         "
+echo "Installing flatpak and flathub..."
 echo $PASSWORD | sudo -S apt install flatpak --yes
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo ------------------------------ 
 
+if [[ $DEBUGOPT = "ON" ]]; then 
+    read -r -p "Press ↵  to continue "
+fi
 
 ### Show the software selection
 SELCT=$(whiptail --title "Instalar paquetes flatpak" --checklist --separate-output "Choose the packets you want to install:" 30 78 23 \
@@ -422,11 +520,9 @@ else
     exit 0
 fi
 
-
 # Configuring Desktop Stuff
 cd ~
 mkdir Documents Downloads Developer Images
-
 
 # Show the reboot dialog
 if (whiptail --title "Reboot" --yesno "We're done, do you want to clean up and reboot? " 8 78); then
@@ -437,8 +533,6 @@ else
     echo $PASSWORD | sudo -S apt autoremove --yes
     echo "You chose not to reboot. Cleaning is done. Finishing script... bye.. "
 fi
-
-
 
 ### Notes for future enhancements
 # Change ly for greetd + tuigreet
