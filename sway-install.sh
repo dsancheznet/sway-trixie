@@ -1224,6 +1224,7 @@ echo ------------------------------
 ### Show the software selection
 SELCT=$(whiptail --title "Instalar paquetes flatpak" --checklist --separate-output "Choose the packets you want to install:" 30 78 23 \
 "ONLYOFFICE"        "OnlyOffice Packet"                             off \
+"BAZAAR"			"Bazaar Software Installer"						off \
 "FIREFOX"           "Mozilla Firefox Browser"                       off \
 "VLC"               "VLC Multimedia Player"                         off \
 "KODI"              "Kodi mediacenter"                              off \
@@ -1249,6 +1250,9 @@ if [ $STS = 0 ]; then
         case $ITEM in
             ONLYOFFICE)
                 flatpak install org.onlyoffice.desktopeditors -y
+                ;;
+            BAZAAR)
+                flatpak install io.github.kolunmi.Bazaar -y
                 ;;
             FIREFOX)
                 flatpak install org.mozilla.firefox -y
