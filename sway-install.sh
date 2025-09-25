@@ -73,11 +73,9 @@ cat <<"EOF"> ~/.bashrc
 eval "$(starship init bash)"
 EOF
 # Load a cool preset find more at https://starship.rs/presets/
+mkdir -p ~/.config
 starship preset gruvbox-rainbow -o ~/.config/starship.toml
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's remove some unwanted menu entries...
 echo "Removing menu entries..."
