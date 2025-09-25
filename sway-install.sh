@@ -57,9 +57,6 @@ echo "                 ▄▌            "
 echo "Installing tools..."
 echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar git curl php-cli php-sqlite3 sqlite3-tools sqlite3 php-curl cryptsetup pv imagemagick ffmpeg python3-pip python-is-python3 mycli httpie mc eza rust-all pkg-config libssl-dev libc++1 grim jq wl-clipboard --yes
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install starhip ( bash prompt ) htps://starship.rs
 echo "  ▗       ▌ ▘  "
@@ -105,9 +102,6 @@ sudo rm -rf ly/
 echo $PASSWORD | sudo -S rm -rf zig*
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install and configure sway display manager
 echo "▄▖       " 
@@ -117,12 +111,8 @@ echo "       ▄▌"
 echo "Installing Sway..."
 echo $PASSWORD | sudo -S apt install sway sway-backgrounds swaybg swayidle swayimg swaykbdd swaylock sway-notification-center swayosd swaysome xdg-desktop-portal-wlr pulseaudio-utils xwayland --yes
 mkdir -p ~/.config/waybar
-cp /etc/xdg/waybar/* ~/.config/waybar/
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install the icons
 echo "▄▖        "
@@ -135,9 +125,6 @@ mkdir -p .local/share/icons/
 mv Zafiro-Nord-Dark .local/share/icons/
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install the fonts
 echo "▖ ▖     ▌  ▄▖    ▗   "
@@ -147,9 +134,6 @@ echo "Installing Nerd Fonts..."
 curl https://raw.githubusercontent.com/dsancheznet/terminal-utilities/refs/heads/main/font_installer.sh | bash
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install gtk themes
 echo "  ▗ ▌   ▄▖▌          "
@@ -160,9 +144,6 @@ echo "Installing gtk Themes..."
 echo $PASSWORD | sudo -S apt install gtk2-engines-aurora gtk2-engines-murrine gtk2-engines-pixbuf gtk2-engines nwg-look --yes
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install waybar
 echo "       ▌     "
@@ -171,11 +152,9 @@ echo "▚▚▘█▌▙▌▙▌█▌▌ "
 echo "     ▄▌      "
 echo "Installing Waybar..."
 echo $PASSWORD | sudo -S apt install waybar power-profiles-daemon --yes
+cp /etc/xdg/waybar/* ~/.config/waybar/
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's configure the keyboard
 echo "▌     ▌        ▌"
@@ -186,9 +165,6 @@ echo "Configuring Keyboard..."
 # read https://github.com/swaywm/sway/wiki#keyboard-layout
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's configure the mouse
 echo "▛▛▌▛▌▌▌▛▘█▌"
@@ -196,9 +172,6 @@ echo "▌▌▌▙▌▙▌▄▌▙▖"
 echo "Configuring mouse..."
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's configure ulauncher
 echo "  ▜         ▌     "
@@ -214,9 +187,6 @@ echo "deb [signed-by=/usr/share/keyrings/ulauncher-archive-keyring.gpg] \
 echo $PASSWORD | sudo -S apt update && echo $PASSWORD | sudo -S apt install ulauncher --yes
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install the logout menu
 echo "   ▜         ▗ "
@@ -226,7 +196,7 @@ echo "       ▄▌      "
 echo "Installing logout..."
 echo $PASSWORD | sudo -S apt install wlogout  --yes
 mkdir -p ~/.config/wlogout
-cat << EOF > ~/.config/wlogout/style.css
+cat <<"EOF"> ~/.config/wlogout/style.css
 * {
 	background-image: none;
 	box-shadow: none;
@@ -287,7 +257,7 @@ button:focus, button:active, button:hover {
     border-right: 1px solid #ffffff;
 }
 EOF
-cat << EOF > ~/.config/wlogout/layout
+cat <<"EOF"> ~/.config/wlogout/layout
 {
     "label" : "lock",
     "action" : "/$HOMEDIR/.config/wlogout/lock.sh",
@@ -325,16 +295,13 @@ cat << EOF > ~/.config/wlogout/layout
     "keybind" : "s"
 }
 EOF
-cat << EOF > ~/.config/wlogout/lock.sh
+cat <<"EOF"> ~/.config/wlogout/lock.sh
 #!/bin/env bash
 grim /tmp/ss.png && convert -blur 0x20 /tmp/ss.png /tmp/ss.png && swaylock -i /tmp/ss.png
 EOF
-chmod +x ~/.config/wlogout/lock.sh:
+chmod +x ~/.config/wlogout/lock.sh
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install vim and some plugins
 echo "  ▘           ▜     ▘    "
@@ -347,9 +314,6 @@ echo $PASSWORD | sudo -S apt install vim vim-tiny vim-runtime vim-common vim-aut
 wget -O ~/.vimrc "https://raw.githubusercontent.com/dsancheznet/terminal-utilities/refs/heads/main/.vimrc"
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install and configure kitty 
 echo "▌ ▘▗ ▗   "
@@ -359,12 +323,9 @@ echo "       ▄▌"
 echo "Installing kitty..."
 echo $PASSWORD | sudo -S apt install kitty kitty-shell-integration kitty-terminfo --yes
 mkdir -p ~/.config/kitty
-wget -O ~/.config/kitty/kitty.conf
+wget "https://raw.githubusercontent.com/dsancheznet/terminal-utilities/refs/heads/main/kitty.conf" -O ~/.config/kitty/kitty.conf
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install bpytop
 echo "▌     ▗     "
@@ -375,9 +336,6 @@ echo "Installing bpytop..."
 echo $PASSWORD | sudo -S apt install bpytop --yes
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install kew
 echo "▌      "
@@ -387,9 +345,6 @@ echo "Installing kew..."
 echo $PASSWORD | sudo -S apt install kew --yes
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install nemo 
 echo "                   ▐▘  "
@@ -400,9 +355,6 @@ echo "Installign nemo and gvfs..."
 echo $PASSWORD | sudo -S apt install nemo nemo-compare nemo-data nemo-fileroller nemo-gtkhash nemo-python --yes
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install glow
 echo "  ▜     "
@@ -413,9 +365,6 @@ echo "Installing glow..."
 echo $PASSWORD | sudo -S apt install glow --yes
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install batcat
 echo "▌   ▗     ▗ "
@@ -425,9 +374,6 @@ echo "Installing batcat..."
 echo $PASSWORD | sudo -S apt install bat --yes
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Let's install flatpak
 echo "▐▘▜   ▗     ▌       ▐▘▜   ▗ ▌   ▌ "
@@ -439,9 +385,6 @@ echo $PASSWORD | sudo -S apt install flatpak --yes
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 echo ------------------------------ 
 
-if [[ $DEBUGOPT = "ON" ]]; then 
-    read -r -p "Press ↵  to continue "
-fi
 
 ### Show the software selection
 SELCT=$(whiptail --title "Instalar paquetes flatpak" --checklist --separate-output "Choose the packets you want to install:" 30 78 23 \
