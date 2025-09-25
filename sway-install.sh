@@ -68,7 +68,7 @@ echo "▄▌▐▖█▌▌ ▄▌▌▌▌▙▌"
 echo "             ▌ "
 echo "Installing Starship..."
 curl -sS https://starship.rs/install.sh | sh
-cat <<EOF> ~/.bashrc
+cat <<"EOF"> ~/.bashrc
 ## Activate starship
 eval "$(starship init bash)"
 EOF
