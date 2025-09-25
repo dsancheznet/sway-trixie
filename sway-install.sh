@@ -446,7 +446,547 @@ echo "     ▄▌      "
 echo "Installing Waybar..."
 echo $PASSWORD | sudo -S apt install waybar power-profiles-daemon --yes
 mkdir -p ~/.config/waybar
-cp /etc/xdg/waybar/* ~/.config/waybar/
+#Default config cp /etc/xdg/waybar/* ~/.config/waybar/
+#TODO: Fill in the configurations
+cat <<"EOF"> ~/.config/waybar/config.jsonc
+// -*- mode: jsonc -*-
+{
+    // "layer": "top", // Waybar at top layer
+    // "position": "bottom", // Waybar position (top|bottom|left|right)
+    //"height": 26, // Waybar height (to be removed for auto height)
+    // "width": 1280, // Waybar width
+    "spacing": 0, // Gaps between modules (4px)
+    // Choose the order of the modules
+    "modules-left": [
+        "sway/workspaces"
+    ],
+    "modules-center": [
+        "sway/mode",
+        "clock"
+    ],
+    "modules-right": [
+        "cpu",
+        "temperature",
+        "pulseaudio",
+        "backlight",
+        "network",
+        "keyboard-state",
+        "sway/language",
+        "tray",
+        "battery",
+        "custom/power"
+    ],
+
+    //Modules configuration
+    "sway/workspaces": {
+      "disable-scroll": true,
+      "all-outputs": true,
+      "warp-on-scroll": false,
+      "format": "{icon}",
+      "format-icons": {
+        "urgent": "",
+        "focused": "",
+        "default": ""
+        }
+    },
+
+    "keyboard-state": {
+        "capslock": true,
+        "format": {
+          "capslock" : "{icon}"
+        } ,
+        "format-icons": {
+            "locked": "⇪",
+            "unlocked": "⇪"
+        }
+    },
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+    "sway/language": {
+      "format": "{}",
+      "tooltip" : false
+    },
+
+    "sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", ""],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "",
+            "deactivated": ""
+        }
+    },
+
+    "tray": {
+        // "icon-size": 21,
+        "spacing": 10
+    },
+
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%A, %d}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%a,%d/%b/%Y}"
+    },
+
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 70,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C {icon}",
+        "format-icons": ["", "", ""]
+    },
+
+    "backlight": {
+        // "device": "acpi_video1",
+        "format": "{percent}% {icon}",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-full": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        // "format-good": "", // An empty format will hide the module
+        // "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "power-profiles-daemon": {
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      }
+    },
+
+    "network": {
+        "family": "ipv4",
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} {ipaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+
+    "pulseaudio": {
+        // "scroll-step": 1, // %, can be a float
+        "format": "{volume}% {icon} {format_source}",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": " {volume}%",
+        "format-source-muted": " ",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol"
+    },
+
+    "custom/power": {
+        "format" : "⏻ ",
+		"tooltip": false,
+    "on-click": "wlogout -b 6 -s -n"
+		}
+
+}
+}
+EOF
+
+cat <<"EOF"> ~/.config/waybar/style.css
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, Discoteca Rounded;
+    font-size: 17px;
+    margin-top: 0px;
+}
+
+/*
+ * D65D0E, D79921, 689D6A, 458588, 665C54, 3C3836 */
+ @define-color 	myorange    #D65D0E;
+ @define-color  myorange2   #f0932b;
+ @define-color 	myyellow    #D79921;
+ @define-color  mygreen     #689D6A;
+ @define-color  myblue      #458588;
+ @define-color  mylightgray #665C54;
+ @define-color  mydarkgray  #3C3836;
+ @define-color  border      @mydarkgray; 
+ @define-color  clock       white;
+ @define-color  clockborder @mylightgray;
+ @define-color  labels      white;
+ @define-color  urgent      yellow;
+
+
+window#waybar {
+    /* San Francisco Display:style=Regular */
+    font-family: "San Francisco Display";
+    background-color: rgba(43, 48, 59, 0.1);
+    /* border-bottom: 1px solid white; This is the lower bar BELOW the buttons */
+    /*rgba(100, 114, 125, 0.5);*/
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+window#waybar.termite {
+    background-color: #3F3F3F;
+}
+
+button {
+    /* Use box-shadow instead of border so the text isn't offset 
+    box-shadow: inset 0 -3px transparent; */
+    /* Avoid rounded borders under each button name */
+    border: none;
+    border-radius: 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: inherit;
+    /* box-shadow: inset 0 -3px #ffffff; */
+    color: @myorange2;
+}
+
+/* you can set a style on hover for any module like this */
+#pulseaudio:hover {
+    color: @myorange2;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+#workspaces button:hover {
+    /* background: rgba(0, 0, 0, 0.2); */
+    color: @myorange2;
+}
+
+#workspaces button.focused {
+    /* background-color: #64727D; */
+    /*box-shadow: inset 0 -3px #ffffff;*/
+}
+
+#workspaces button.urgent {
+    color: @urgent;
+}
+
+#workspaces {
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+#mode {
+    /* background-color: @mylightgray; */
+    background: linear-gradient(180deg,rgba(60, 56, 54, 1) 0%, rgba(102, 92, 84, 1) 100%);
+    border: 2px solid @border;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    margin-right: 50px;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#power-profiles-daemon {
+    padding: 0 10px;
+    color: #ffffff;
+    border-bottom: 3px solid @border;
+}
+
+#window,
+#workspaces {
+    margin: 4px;
+}
+
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0px;
+    border-radius: 0px;
+}
+
+.modules-left {
+    background-color: @mylightgray;
+    border-bottom: 3px solid @border;
+    border-right: 3px solid @border;
+    border-bottom-right-radius: 18px;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0px;
+}
+
+#clock {
+    color: @clock;
+    font-family: "Upheaval TT (BRK)";
+    font-size: 36px;
+    margin-right: 60px;
+    border-bottom: none;
+    text-shadow: 3px 0 @clockborder, -3px 0 @clockborder, 0 3px @clockborder, 0 -3px @clockborder,
+             3px 3px @clockborder, -3px -3px @clockborder, 3px -3px @clockborder, -3px 3px @clockborder;
+}
+
+#battery {
+    background-color: @mylightgray;
+    color: white;
+}
+
+#battery.plugged {
+    color: white;
+}
+
+#battery.charging {
+  color: @mygreen;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+/* Using steps() instead of linear as a timing function to limit cpu usage */
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#power-profiles-daemon {
+    padding-right: 15px;
+}
+
+#power-profiles-daemon.performance {
+    background-color: #f53c3c;
+    color: #ffffff;
+}
+
+#power-profiles-daemon.balanced {
+    background-color: #2980b9;
+    color: #ffffff;
+}
+
+#power-profiles-daemon.power-saver {
+    background-color: #2ecc71;
+    color: #000000;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+    background-color: @mylightgray;
+    /* border-top-left-radius: 8px; */
+    border-bottom-left-radius: 15px;
+    border-left: 3px solid @border;
+
+}
+
+#memory {
+    background-color: #9b59b6;
+}
+
+#disk {
+    background-color: #964B00;
+}
+
+#backlight {
+    background-color: @mylightgray;
+}
+
+#network {
+    background-color: @mylightgray;
+    color: @labels;
+}
+
+#network:hover {
+    color: @myorange2;
+}
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+#pulseaudio {
+    background-color: @mylightgray;
+}
+
+#pulseaudio.muted {
+}
+
+#wireplumber {
+    background-color: #fff0f5;
+}
+
+#wireplumber.muted {
+    background-color: #f53c3c;
+}
+
+#custom-media {
+    background-color: #66cc99;
+    color: #2a5c45;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: #66cc99;
+}
+
+#custom-media.custom-vlc {
+    background-color: #ffa000;
+}
+
+#temperature {
+  background-color: @mylightgray;
+}
+
+#temperature.critical {
+    background-color: #eb4d4b;
+}
+
+#tray {
+    background-color: @mylightgray;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: yellow;
+}
+
+#idle_inhibitor {
+    background-color: @mylight;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
+
+#language {
+    background-color: @mylightgray;
+    min-width: 16px;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-bottom: 3px solid @border;
+}
+
+#keyboard-state {
+    background-color: @mylightgray;
+    border-bottom: 3px solid @border;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+    color: @mylightgray;
+}
+
+#keyboard-state > label.locked {
+   /* background: rgba(0, 0, 0, 0.2); */
+  color: white;
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+    background-color: transparent;
+}
+
+#privacy {
+    padding: 0;
+}
+
+#privacy-item {
+    padding: 0 5px;
+    color: white;
+}
+
+#privacy-item.screenshare {
+    background-color: #cf5700;
+}
+
+#privacy-item.audio-in {
+    background-color: #1ca000;
+}
+
+#PRivacy-item.audio-out {
+    background-color: #0069d4;
+}
+
+#custom-power {
+    color: @labels;
+    background-color: @mylightgray;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-bottom: 3px solid @border;
+}
+
+#custom-power:hover {
+    color: @myorange2;
+}
+EOF
+
 echo ------------------------------ 
 
 
@@ -551,6 +1091,7 @@ button:focus, button:active, button:hover {
     border-right: 1px solid #ffffff;
 }
 EOF
+
 cat <<"EOF"> ~/.config/wlogout/layout
 {
     "label" : "lock",
