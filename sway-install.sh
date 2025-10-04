@@ -5,7 +5,7 @@ while getopts d option
 do
     case "${option}"
         in
-        d)DEBUGOPT="ON";; # This option allows to stop after each step.
+        d)DEBUGOPT="ON";; # This option allows to you to debug this script.
     esac
 done
 
@@ -60,7 +60,7 @@ echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar gi
 
 ### Let's remove some unwanted menu entries this has created...
 echo "Removing menu entries..."
-echo $PASSWORD | sudo -S rm '/usr/share/applications/display-im6.q16.desktop'
+echo $PASSWORD | sudo -S rm '/usr/share/applications/display-im6.q16.desktop' # Why would we want menu entries for command line utilities
 echo $PASSWORD | sudo -S rm /usr/share/applications/mc.desktop
 echo $PASSWORD | sudo -S rm /usr/share/applications/mcedit.desktop
 echo ------------------------------ 
@@ -103,7 +103,6 @@ echo "▄▌▚▚▘█▌▙▌"
 echo "       ▄▌"
 echo "Installing Sway..."
 echo $PASSWORD | sudo -S apt install sway sway-backgrounds swaybg swayidle swayimg swaykbdd swaylock sway-notification-center swayosd swaysome xdg-desktop-portal-wlr pulseaudio-utils xwayland --yes
-mkdir -p ~/.config/sway
 echo ------------------------------ 
 
 
@@ -348,7 +347,7 @@ else
     exit 0
 fi
 
-# Configuring Desktop Stuff
+# Configuring Desktop Stuff and creating skel directories
 cd ~
 mkdir Documents Downloads Developer Images Music
 
@@ -367,4 +366,3 @@ fi
 # https://wiki.archlinux.org/title/Greetd
 # https://github.com/apognu/tuigreet
 #
-
