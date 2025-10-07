@@ -55,7 +55,31 @@ echo "▐ ▛▌▛▘▜▘▀▌▐ ▐ ▌▛▌▛▌  ▐ ▛▌▛▌▐ �
 echo "▟▖▌▌▄▌▐▖█▌▐▖▐▖▌▌▌▙▌  ▐ ▙▌▙▌▐▖▄▌"
 echo "                 ▄▌            "
 echo "Installing tools..."
-echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar git curl php-cli php-sqlite3 sqlite3-tools sqlite3 php-curl cryptsetup pv imagemagick ffmpeg python3-pip python-is-python3 mycli httpie mc eza rust-all pkg-config libssl-dev libc++1 grim jq wl-clipboard trash-cli --yes
+echo $PASSWORD | sudo -S apt install rar unrar ace unace p7zip-full p7zip-rar \        
+                                     curl \                                             
+                                     php-cli php-sqlite3 sqlite3-tools sqlite3 php-curl \
+                                     cryptsetup pv \
+                                     imagemagick ffmpeg \                              
+                                     python3-pip python-is-python3 \                    
+                                     mycli httpie mc eza \                               
+                                     git rust-all pkg-config libssl-dev libc++1 \         
+                                     grim \                                                
+                                     beets \                                               
+                                     jq \ 
+                                     wl-clipboard \
+                                     fzf \
+                                     fd-find \
+                                     ripgrep \
+                                     hexyl \
+                                     tree \
+                                     rsync \
+                                     httpie \
+                                     du-dust \
+                                     aria2 \
+                                     pandoc \
+                                     gddrescue rescueview \
+                                     nmap \
+                                     trash-cli --yes
 
 
 ### Let's remove some unwanted menu entries this has created...
@@ -66,13 +90,32 @@ echo $PASSWORD | sudo -S rm /usr/share/applications/mcedit.desktop
 echo ------------------------------ 
 
 
-### Let's install starship ( bash prompt ) htps://starship.rs
+### Let's install starship ( bash prompt ) https://starship.rs
 echo "  ▗       ▌ ▘  "
 echo "▛▘▜▘▀▌▛▘▛▘▛▌▌▛▌"
 echo "▄▌▐▖█▌▌ ▄▌▌▌▌▙▌"
 echo "             ▌ "
 echo "Installing Starship..."
 curl -sS https://starship.rs/install.sh | sh
+echo ------------------------------ 
+
+
+## Let's install superfile ( file manager ) https://superfile.dev/
+echo "          ▐▘▘▜   "
+echo "▛▘▌▌▛▌█▌▛▘▜▘▌▐ █▌"
+echo "▄▌▙▌▙▌▙▖▌ ▐ ▌▐▖▙▖"
+echo "    ▌            "
+echo "Installing superfile file manager..."
+bash -c "$(curl -sLo- https://superfile.dev/install.sh)"
+echo ------------------------------ 
+
+
+# Let's install croc file transfer https://github.com/schollz/croc
+echo "▛▘▛▘▛▌▛▘"
+echo "▙▖▌ ▙▌▙▖"
+echo "Installing croc file transfer utility..."
+curl https://getcroc.schollz.com | bash
+echo ------------------------------ 
 
 
 ### Let's install and configure ly display manager
